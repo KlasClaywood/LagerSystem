@@ -1,0 +1,53 @@
+﻿@model IEnumerable<LagerSystem.Models.StockItem>
+
+@{
+    ViewBag.Title = "Results";
+}
+
+<h2>Results</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @(Html.ActionLink("Name", "Results", new LagerSystem.Models.SearchSortViewModel(ViewBag.SearchSorter) { SortVariable ="Name", Descending = (ViewBag.SearchSorter.SortVariable == "Name")? !ViewBag.SearchSorter.Descending : false}))
+            </th>
+        <th>
+            @(Html.ActionLink("Price", "Results", new LagerSystem.Models.SearchSortViewModel(ViewBag.SearchSorter) { SortVariable = "Price", Descending = (ViewBag.SearchSorter.SortVariable == "Price") ? !ViewBag.SearchSorter.Descending : false }))
+        </th>
+        <th>
+            @(Html.ActionLink("Shelf", "Results", new LagerSystem.Models.SearchSortViewModel(ViewBag.SearchSorter) { SortVariable = "Shelf", Descending = (ViewBag.SearchSorter.SortVariable == "Shelf") ? !ViewBag.SearchSorter.Descending : false }))
+        </th>
+        <th>
+           @(Html.ActionLink("Description", "Results", new LagerSystem.Models.SearchSortViewModel(ViewBag.SearchSorter) { SortVariable = "Description", Descending = (ViewBag.SearchSorter.SortVariable == "Description") ? !ViewBag.SearchSorter.Descending : false }))
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Shelf)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ItemID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ItemID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ItemID })
+        </td>
+    </tr>
+}
+
+
+</table>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

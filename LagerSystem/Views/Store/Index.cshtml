@@ -1,0 +1,51 @@
+﻿@model IEnumerable<LagerSystem.Models.StockItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Name", "Index", new LagerSystem.Models.SortViewModel{ SortVariable = "Name", Descending = (ViewBag.Sorter.SortVariable == "Name" && ViewBag.Sorter.Descending)? false : true })     
+        </th>                                                                                                              
+        <th>                                                                                                               
+            @Html.ActionLink("Price", "Index", new LagerSystem.Models.SortViewModel() { SortVariable = "Price", Descending = (ViewBag.Sorter.SortVariable == "Price" && ViewBag.Sorter.Descending) ? false : true })   
+        </th>                                                                                                              
+        <th>                                                                                                               
+            @Html.ActionLink("Shelf", "Index", new LagerSystem.Models.SortViewModel() { SortVariable = "Shelf", Descending = (ViewBag.Sorter.SortVariable == "Shelf" && ViewBag.Sorter.Descending) ? false : true })   
+        </th>                                                                                                              
+        <th>                                                                                                               
+            @Html.ActionLink("Description", "Index", new LagerSystem.Models.SortViewModel() { SortVariable = "Description", Descending = (ViewBag.Sorter.SortVariable == "Description" && ViewBag.Sorter.Descending) ? false : true })  
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Shelf)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ItemID })
+            @Html.ActionLink("Detials", "Detials", new { id=item.ItemID })
+            @Html.ActionLink("Delete", "Remove", new { id=item.ItemID })
+        </td>
+    </tr>
+}
+
+</table>
